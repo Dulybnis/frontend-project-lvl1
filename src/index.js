@@ -18,6 +18,18 @@ const calaulation = (number1, number2, operation) => {
   return result;
 };
 const isEven = (number) => (number % 2 === 0);
+const greatestDevisor = (number1, number2) => {
+  let min = (number1 < number2) ? number1 : number2;
+  let result;
+  while (min > 0) {
+    if ((number1 % min === 0) && (number2 % min === 0)) {
+      result = min;
+      break;
+    }
+    min -= 1;
+  }
+  return result;
+};
 
 const brainCalc = (expression, maxFirstNumber, maxSecondNumber) => {
   let correctAnswerCounter = 0;
@@ -70,4 +82,29 @@ const brainEven = (maxEven) => {
   return result;
 };
 
-export { brainCalc, brainEven };
+const brainGcd = (maxFirstNumber, maxSecondNumber) => {
+  let correctAnswerCounter = 0;
+
+  let result = false;
+  while (correctAnswerCounter < 3) {
+    const firstNumber = randomNumber(maxFirstNumber);
+    const secondNumber = randomNumber(maxSecondNumber);
+    console.log(`Question: ${firstNumber} ${secondNumber}`);
+    const answer = Number(readlineSync.question('Your answer: '));
+    const correctAnswer = greatestDevisor(firstNumber, secondNumber);
+    if (answer === correctAnswer) {
+      console.log('Correct!');
+      correctAnswerCounter += 1;
+      if (correctAnswerCounter === 3) {
+        result = true;
+      }
+    } else {
+      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+      result = false;
+      break;
+    }
+  }
+  return result;
+};
+
+export { brainCalc, brainEven, brainGcd };
