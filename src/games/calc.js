@@ -1,22 +1,13 @@
-import whatName from '../cli.js';
-import { brainCalc } from '../index.js';
+import brainGames from '../index.js';
 
-const expression = {
+const parameters = {
+  beginText: 'What is the result of the expression?',
   1: '+',
   2: '-',
   3: '*',
   expressionNumber: 3,
+  maxFirstNumber: 20,
+  maxSecondNumber: 10,
 };
-const maxFirstNumber = 20;
-const maxSecondNumber = 10;
 
-export default () => {
-  const name = whatName();
-  console.log('What is the result of the expression?');
-
-  if (brainCalc(expression, maxFirstNumber, maxSecondNumber)) {
-    console.log(`Congratulation, ${name}!`);
-  } else {
-    console.log(`Let's try again, ${name}!`);
-  }
-};
+export default () => brainGames('calc', parameters);

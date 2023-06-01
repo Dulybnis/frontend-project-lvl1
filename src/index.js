@@ -1,7 +1,12 @@
 import readlineSync from 'readline-sync';
+import whatName from './cli.js';
 
 const randomNumber = (max) => Math.floor(Math.random() * max) + 1;
-const calaulation = (number1, number2, operation) => {
+
+const calaulation = (parameters) => {
+  const operation = parameters[randomNumber(parameters.expressionNumber)];
+  const number1 = randomNumber(parameters.maxFirstNumber);
+  const number2 = randomNumber(parameters.maxSecondNumber);
   let result;
   switch (operation) {
     case '+':
@@ -15,10 +20,16 @@ const calaulation = (number1, number2, operation) => {
       result = (number1 * number2);
       break;
   }
-  return result;
+  return {
+    operation,
+    number1,
+    number2,
+    result,
+  };
 };
-const isEven = (number) => (number % 2 === 0);
-const greatestDevisor = (number1, number2) => {
+const gcd = (parameters) => {
+  const number1 = randomNumber(parameters.maxFirstNumber);
+  const number2 = randomNumber(parameters.maxSecondNumber);
   let min = (number1 < number2) ? number1 : number2;
   let result;
   while (min > 0) {
@@ -28,83 +39,71 @@ const greatestDevisor = (number1, number2) => {
     }
     min -= 1;
   }
-  return result;
+  return {
+    number1,
+    number2,
+    result,
+  };
 };
+const progressionFunc = (maxStart, maxProgresive) => {
+  const start = randomNumber(maxStart);
+  const progress = randomNumber(maxProgresive);
+  const arr = [start];
+  for (let i = 1; i < 10; i += 1) {
+    arr[i] = arr[i - 1] + progress;
+  }
+  const hiddenIndex = randomNumber(8);
+  const correctAnswer = arr[hiddenIndex];
+  arr[hiddenIndex] = '..';
+  return {
+    arr,
+    correctAnswer,
+  };
+};
+const isEven = (number) => (number % 2 === 0);
 
-const brainCalc = (expression, maxFirstNumber, maxSecondNumber) => {
+export default (game, parameters) => {
+  const name = whatName();
+  console.log(parameters.beginText);
+
   let correctAnswerCounter = 0;
-
-  let result = false;
   while (correctAnswerCounter < 3) {
-    const operation = expression[randomNumber(expression.expressionNumber)];
-    const firstNumber = randomNumber(maxFirstNumber);
-    const secondNumber = randomNumber(maxSecondNumber);
-    console.log(`Question: ${firstNumber} ${operation} ${secondNumber}`);
-    const answer = Number(readlineSync.question('Your answer: '));
-    const correctAnswer = calaulation(firstNumber, secondNumber, operation);
+    let correctAnswer;
+    let progressionIteration;
+    switch (game) {
+      case 'even':
+        progressionIteration = randomNumber(parameters.maxEven);
+        console.log('Question: ', progressionIteration);
+        correctAnswer = isEven(progressionIteration) ? 'yes' : 'no';
+        break;
+      case 'calc':
+        progressionIteration = calaulation(parameters);
+        correctAnswer = progressionIteration.result;
+        console.log(`Question: ${progressionIteration.number1} ${progressionIteration.operation} ${progressionIteration.number2}`);
+        break;
+      case 'gcd':
+        progressionIteration = gcd(parameters);
+        correctAnswer = progressionIteration.result;
+        console.log(`Question: ${progressionIteration.number1} ${progressionIteration.number2}`);
+        break;
+      case 'progression':
+      default:
+        progressionIteration = progressionFunc(parameters.maxStart, parameters.maxProgresive);
+        console.log(`Question: ${progressionIteration.arr.join(' ')}`);
+        correctAnswer = progressionIteration.correctAnswer;
+        break;
+    }
+    const answerNan = readlineSync.question('Your answer: ');
+    const answer = Number(answerNan) ? Number(answerNan) : answerNan;
     if (answer === correctAnswer) {
       console.log('Correct!');
       correctAnswerCounter += 1;
       if (correctAnswerCounter === 3) {
-        result = true;
+        console.log(`Congratulation, ${name}!`);
       }
     } else {
       console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-      result = false;
       break;
     }
   }
-  return result;
 };
-
-const brainEven = (maxEven) => {
-  let correctAnswerCounter = 0;
-
-  let result = false;
-  while (correctAnswerCounter < 3) {
-    const numberForQuestion = randomNumber(maxEven);
-    const even = isEven(numberForQuestion);
-    console.log('Question: ', numberForQuestion);
-    const correctAnswer = even ? 'yes' : 'no';
-    const answer = readlineSync.question('Your answer: ');
-    if ((even && answer === 'yes') || (!even && answer === 'no')) {
-      console.log('Correct!');
-      correctAnswerCounter += 1;
-      if (correctAnswerCounter === 3) {
-        result = true;
-      }
-    } else {
-      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'`);
-      result = false;
-      break;
-    }
-  }
-  return result;
-};
-
-const brainGcd = (maxFirstNumber, maxSecondNumber) => {
-  let correctAnswerCounter = 0;
-
-  let result = false;
-  while (correctAnswerCounter < 3) {
-    const firstNumber = randomNumber(maxFirstNumber);
-    const secondNumber = randomNumber(maxSecondNumber);
-    console.log(`Question: ${firstNumber} ${secondNumber}`);
-    const answer = Number(readlineSync.question('Your answer: '));
-    const correctAnswer = greatestDevisor(firstNumber, secondNumber);
-    if (answer === correctAnswer) {
-      console.log('Correct!');
-      correctAnswerCounter += 1;
-      if (correctAnswerCounter === 3) {
-        result = true;
-      }
-    } else {
-      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-      result = false;
-      break;
-    }
-  }
-  return result;
-};
-
-export { brainCalc, brainEven, brainGcd };
