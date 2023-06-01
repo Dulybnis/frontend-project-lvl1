@@ -80,7 +80,7 @@ export default (game, parameters) => {
     switch (game) {
       case 'even':
         progressionIteration = randomNumber(parameters.maxEven);
-        console.log('Question: ', progressionIteration);
+        console.log(`Question: ${progressionIteration}`);
         correctAnswer = isEven(progressionIteration) ? 'yes' : 'no';
         break;
       case 'calc':
