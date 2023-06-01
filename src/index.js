@@ -111,7 +111,7 @@ export default (game, parameters) => {
       console.log('Correct!');
       correctAnswerCounter += 1;
       if (correctAnswerCounter === 3) {
-        console.log(`Congratulation, ${name}!`);
+        console.log(`Congratulations, ${name}!`);
       }
     } else {
       console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
