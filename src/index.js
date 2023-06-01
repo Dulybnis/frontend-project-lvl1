@@ -95,7 +95,7 @@ export default (game, parameters) => {
         break;
       case 'prime':
         progressionIteration = randomNumber(parameters.maxPrime);
-        console.log('Question: ', progressionIteration);
+        console.log(`Question: ${progressionIteration}`);
         correctAnswer = isPrime(progressionIteration) ? 'yes' : 'no';
         break;
       case 'progression':
