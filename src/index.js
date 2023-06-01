@@ -61,6 +61,13 @@ const progressionFunc = (maxStart, maxProgresive) => {
   };
 };
 const isEven = (number) => (number % 2 === 0);
+const isPrime = (number) => {
+  if (number < 2) { return false; }
+  for (let i = 3; i < number; i += 1) {
+    if (number % i === 0) { return false; }
+  }
+  return true;
+};
 
 export default (game, parameters) => {
   const name = whatName();
@@ -85,6 +92,11 @@ export default (game, parameters) => {
         progressionIteration = gcd(parameters);
         correctAnswer = progressionIteration.result;
         console.log(`Question: ${progressionIteration.number1} ${progressionIteration.number2}`);
+        break;
+      case 'prime':
+        progressionIteration = randomNumber(parameters.maxPrime);
+        console.log('Question: ', progressionIteration);
+        correctAnswer = isPrime(progressionIteration) ? 'yes' : 'no';
         break;
       case 'progression':
       default:
