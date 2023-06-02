@@ -107,6 +107,9 @@ export default (game, parameters) => {
     }
     const answerNan = readlineSync.question('Your answer: ');
     const answer = Number(answerNan) ? Number(answerNan) : answerNan;
+    if (correctAnswer === 0) {
+      correctAnswer = '0';
+    }
     if (answer === correctAnswer) {
       console.log('Correct!');
       correctAnswerCounter += 1;
