@@ -4,7 +4,7 @@ download: git clone "https://github.com/Dulybnis/frontend-project-lvl1.git"<br>
 install: make install<br>
 
 brain-even: answer "yes" if the number is even, otherwise answer "no"<br>
-<video src="https://asciinema.org/a/nZxP0LeVtfQ2ZurV8x8II3ziw"></video><br>
+<video><source src="https://asciinema.org/a/nZxP0LeVtfQ2ZurV8x8II3ziw"/></video><br>
 brain-calc: what is the result of the expression?<br>
 <video src="https://asciinema.org/a/mWcmLig5BCd5OznxwadHUjQuA"></video><br>
 brain-gcd: find the greatest common divisor of two numbers.<br>
