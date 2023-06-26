@@ -6,8 +6,10 @@ install: make install<br>
 brain-even: answer "yes" if the number is even, otherwise answer "no"<br>
 <a href="https://asciinema.org/a/s90Vzcdbp6hHivWeV2SK5yMKU" target="_blank"><img src="https://asciinema.org/a/s90Vzcdbp6hHivWeV2SK5yMKU.svg" /></a>
 <video><source src="https://asciinema.org/a/nZxP0LeVtfQ2ZurV8x8II3ziw"/></video><br>
+
 brain-calc: what is the result of the expression?<br>
-<video src="https://asciinema.org/a/mWcmLig5BCd5OznxwadHUjQuA"></video><br>
+[![asciicast](https://asciinema.org/a/mWcmLig5BCd5OznxwadHUjQuA.svg)](https://asciinema.org/a/mWcmLig5BCd5OznxwadHUjQuA)
+
 brain-gcd: find the greatest common divisor of two numbers.<br>
 <video src="https://asciinema.org/a/g0Rk7kMuzR5w0IzpUU3xRa2JG"></video><br>
 brain-progression: what number is missing in the progression?<br>
