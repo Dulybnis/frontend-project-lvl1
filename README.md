@@ -4,7 +4,7 @@ download: git clone "https://github.com/Dulybnis/frontend-project-lvl1.git"<br>
 install: make install<br>
 
 brain-even: answer "yes" if the number is even, otherwise answer "no"<br>
-<script async id="asciicast-s90Vzcdbp6hHivWeV2SK5yMKU" src="https://asciinema.org/a/s90Vzcdbp6hHivWeV2SK5yMKU.js"></script>
+<a href="https://asciinema.org/a/s90Vzcdbp6hHivWeV2SK5yMKU" target="_blank"><img src="https://asciinema.org/a/s90Vzcdbp6hHivWeV2SK5yMKU.svg" /></a>
 <video><source src="https://asciinema.org/a/nZxP0LeVtfQ2ZurV8x8II3ziw"/></video><br>
 brain-calc: what is the result of the expression?<br>
 <video src="https://asciinema.org/a/mWcmLig5BCd5OznxwadHUjQuA"></video><br>
