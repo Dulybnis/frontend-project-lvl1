@@ -1,12 +1,13 @@
 import readlineSync from 'readline-sync';
 import makeWelcome from './cli.js';
 
+const roundsCount = 3;
+
 const runEngine = (rules, makeRound) => {
   const name = makeWelcome();
-  const roundCounts = 3;
   console.log(rules);
 
-  for (let i = 0; i < roundCounts; i += 1) {
+  for (let i = 0; i < roundsCount; i += 1) {
     const [question, answer] = makeRound();
     console.log(`Question: ${question}`);
     const answerForQuestion = readlineSync.question('Your answer: ');

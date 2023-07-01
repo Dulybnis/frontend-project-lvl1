@@ -7,22 +7,23 @@ const parameters = {
 };
 
 const rules = 'Find the greatest common divisor of given numbers.';
-const gcd = () => {
-  const number1 = randomNumber(parameters.maxFirstNumber);
-  const number2 = randomNumber(parameters.maxSecondNumber);
-  let min = (number1 < number2) ? number1 : number2;
-  let result;
-  while (min > 0) {
-    if ((number1 % min === 0) && (number2 % min === 0)) {
-      result = min;
-      break;
-    }
-    min -= 1;
+
+const getGcd = (num1, num2) => {
+  if (num1 === 0) {
+    return num2;
   }
+  return getGcd(num2 % num1, num1);
+};
+
+const gcd = () => {
+  const number1 = randomNumber(1, parameters.maxFirstNumber);
+  const number2 = randomNumber(1, parameters.maxSecondNumber);
+  const result = getGcd(number1, number2);
+
   return {
     number1,
     number2,
-    correctAnswer: result,
+    correctAnswer: result.toString(),
   };
 };
 
@@ -30,8 +31,8 @@ const makeRound = () => {
   const {
     number1, number2, correctAnswer,
   } = gcd();
-  const question = (`Question: ${number1} ${number2}`);
-  return [question, correctAnswer.toString()];
+  const question = (`${number1} ${number2}`);
+  return [question, correctAnswer];
 };
 
 export default () => brainGames(rules, makeRound);

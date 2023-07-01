@@ -11,10 +11,11 @@ const parameters = {
 };
 
 const rules = 'What is the result of the expression?';
+
 const calaulation = () => {
-  const operation = parameters[randomNumber(parameters.expressionNumber)];
-  const number1 = randomNumber(parameters.maxFirstNumber);
-  const number2 = randomNumber(parameters.maxSecondNumber);
+  const operation = parameters[randomNumber(1, parameters.expressionNumber)];
+  const number1 = randomNumber(0, parameters.maxFirstNumber);
+  const number2 = randomNumber(0, parameters.maxSecondNumber);
   let result;
   switch (operation) {
     case '+':
@@ -32,7 +33,7 @@ const calaulation = () => {
     operation,
     number1,
     number2,
-    correctAnswer: result,
+    correctAnswer: result.toString(),
   };
 };
 
@@ -40,8 +41,8 @@ const makeRound = () => {
   const {
     operation, number1, number2, correctAnswer,
   } = calaulation();
-  const question = (`Question: ${number1} ${operation} ${number2}`);
-  return [question, correctAnswer.toString()];
+  const question = (`${number1} ${operation} ${number2}`);
+  return [question, correctAnswer];
 };
 
 export default () => brainGames(rules, makeRound);

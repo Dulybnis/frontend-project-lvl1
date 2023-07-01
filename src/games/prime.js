@@ -2,6 +2,7 @@ import brainGames from '../index.js';
 import randomNumber from '../random.js';
 
 const rules = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+
 const maxPrime = 100;
 
 const isPrime = (number) => {
@@ -13,9 +14,9 @@ const isPrime = (number) => {
 };
 
 const makeRound = () => {
-  const roundNumber = randomNumber(maxPrime);
+  const roundNumber = randomNumber(1, maxPrime).toString();
   const correctAnswer = isPrime(roundNumber) ? 'yes' : 'no';
-  return [roundNumber.toString(), correctAnswer];
+  return [roundNumber, correctAnswer];
 };
 
 export default () => brainGames(rules, makeRound);
