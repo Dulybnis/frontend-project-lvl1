@@ -12,7 +12,7 @@ const parameters = {
 
 const rules = 'What is the result of the expression?';
 
-const calaulation = () => {
+const calculation = () => {
   const operation = parameters[randomNumber(1, parameters.expressionNumber)];
   const number1 = randomNumber(0, parameters.maxFirstNumber);
   const number2 = randomNumber(0, parameters.maxSecondNumber);
@@ -40,7 +40,7 @@ const calaulation = () => {
 const makeRound = () => {
   const {
     operation, number1, number2, correctAnswer,
-  } = calaulation();
+  } = calculation();
   const question = (`${number1} ${operation} ${number2}`);
   return [question, correctAnswer];
 };
